@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
 
 /**
  * JDBC - DataSource, JdbcUtils 사용
+ * DataSource 설정과 사용의 분리
  */
 @Slf4j
 public class MemberRepositoryV1 {

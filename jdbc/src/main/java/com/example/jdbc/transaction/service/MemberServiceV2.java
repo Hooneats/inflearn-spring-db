@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * 어플리케이션 요청 하나당 ---- [Connection] ---- DB ----> Session
+ * 클라이언트 요청 하나당 ---- [Connection] ---- DB ----> Session
  * (Session 이 Transaction 의 범위이다)
  *
  * 따라서 트랜젝션은 Connection 이 유지되어야 트랜젝션 또한 유지된다.

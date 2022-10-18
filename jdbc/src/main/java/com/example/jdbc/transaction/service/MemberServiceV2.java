@@ -10,9 +10,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * 트랜젝션은 Connection 이 유지되어야 트랜젝션 또한 유지된다.
+ * 어플리케이션 요청 하나당 ---- [Connection] ---- DB ----> Session
+ * (Session 이 Transaction 의 범위이다)
+ *
+ * 따라서 트랜젝션은 Connection 이 유지되어야 트랜젝션 또한 유지된다.
+ * (autoCommit 을 false 로 변경해 Connection 을 유지시킨다.)
  *
  * 트랜젝션 - Connection 을 파라미터로 연동, 커넥션 풀을 고려한 종료.
+ * (커넥션 풀을 고려해 autoCommit 을 다시 true 로 변경한 뒤 Connection 을 반납해 줘야 한다.)
  */
 @Slf4j
 @RequiredArgsConstructor

@@ -29,11 +29,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * 트랜젝션 - @Transactional AOP
  * 테스트에서는 스프링이 빈을 관리할 수 있도록 @SpringBootTest 추가
  *  ㄴ 근데 안되네..ㅠㅠ..
+ *  ㄴ dataSource 만큼은 SpringBoot 가 주입하도록 하면 작동함
  */
 @SpringBootTest
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@TestPropertySource("classpath:application-test.properties")
 class MemberServiceV3_3Test {
 
     private static final String MEMBER_A = "memberA";
@@ -53,19 +51,21 @@ class MemberServiceV3_3Test {
 
     @TestConfiguration
     static class TestConfig {
-        @Bean
-        DataSource dataSource() {
-            return new DriverManagerDataSource(URL, USERNAME, PASSWORD);
+
+        private final DataSource dataSource;
+
+        TestConfig(DataSource dataSource) {
+            this.dataSource = dataSource;
         }
 
         @Bean
         PlatformTransactionManager transactionManager() {
-            return new DataSourceTransactionManager(dataSource());
+            return new DataSourceTransactionManager(dataSource);
         }
 
         @Bean
         MemberRepositoryV3 memberRepositoryV3() {
-            return new MemberRepositoryV3(dataSource());
+            return new MemberRepositoryV3(dataSource);
         }
 
         @Bean
@@ -73,13 +73,6 @@ class MemberServiceV3_3Test {
             return new MemberServiceV3_3(memberRepositoryV3());
         }
     }
-
-//        @BeforeEach
-//    void setUp() {
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource(URL, USERNAME, PASSWORD);
-//        memberRepositoryV3 = new MemberRepositoryV3(dataSource);
-//        memberServiceV3_3 = new MemberServiceV3_3(memberRepositoryV3);
-//    }
 
     @AfterEach
     void deleteUp() throws SQLException {

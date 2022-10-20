@@ -1,3 +1,4 @@
 rootProject.name = 'spring-db'
 include 'jdbc'
+include 'db-start'
 

@@ -3,6 +3,7 @@ HELP.md
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
+# QueryDsl Q file exclude
 **/src/main/generated/
 !**/src/test/**/build/
 

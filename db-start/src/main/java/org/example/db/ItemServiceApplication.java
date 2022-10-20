@@ -1,6 +1,7 @@
 package org.example.db;
 
 import org.example.db.config.JpaConfig;
+import org.example.db.config.JpaV2Config;
 import org.example.db.config.QueryDslConfig;
 import org.example.db.config.SpringDataJpaConfig;
 import org.example.db.repository.ItemRepository;
@@ -12,7 +13,8 @@ import org.springframework.context.annotation.Profile;
 
 
 //@Import(JpaConfig.class)
-@Import(QueryDslConfig.class)
+//@Import(QueryDslConfig.class)
+@Import(JpaV2Config.class)
 @SpringBootApplication(scanBasePackages = "org.example.db.web")
 public class ItemServiceApplication {
 

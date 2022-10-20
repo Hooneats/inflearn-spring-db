@@ -12,6 +12,9 @@ import org.example.db.repository.jpaV2.ItemRepositoryV2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * OCP 를 신경쓰지 않은 빠른 개발을 위한 구조
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor

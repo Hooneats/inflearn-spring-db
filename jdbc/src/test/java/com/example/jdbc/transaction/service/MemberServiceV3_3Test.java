@@ -32,6 +32,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  *  ㄴ dataSource 만큼은 SpringBoot 가 주입하도록 하면 작동함
  */
 @SpringBootTest
+@TestPropertySource("classpath:application-test.properties")
 class MemberServiceV3_3Test {
 
     private static final String MEMBER_A = "memberA";

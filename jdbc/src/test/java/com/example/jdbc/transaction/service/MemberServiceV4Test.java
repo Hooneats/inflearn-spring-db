@@ -16,15 +16,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.test.context.TestPropertySource;
 
 /**
  * 예외 누수 문제 해결
  * SQLException 제거
  */
 @SpringBootTest
+@TestPropertySource("classpath:application-test.properties")
 class MemberServiceV4Test {
     private static final String MEMBER_A = "memberA";
     private static final String MEMBER_B = "memberB";

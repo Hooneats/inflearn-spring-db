@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@TestPropertySource("classpath:application-test.properties")
+@TestPropertySource("classpath:application.properties")
 class MemberRepositoryV0Test {
 
     MemberRepositoryV0 repository = new MemberRepositoryV0();

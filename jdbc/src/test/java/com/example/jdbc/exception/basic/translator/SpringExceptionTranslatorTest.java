@@ -2,7 +2,6 @@ package com.example.jdbc.exception.basic.translator;
 
 import static com.example.jdbc.connection.ConnectionConst.*;
 
-import com.example.jdbc.connection.ConnectionConst;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -38,7 +37,7 @@ import org.springframework.test.context.TestPropertySource;
  */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@TestPropertySource("classpath:application-test.properties")
+@TestPropertySource("classpath:application.properties")
 public class SpringExceptionTranslatorTest {
 
     DataSource dataSource;

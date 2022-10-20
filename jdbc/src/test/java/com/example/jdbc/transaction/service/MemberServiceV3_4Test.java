@@ -26,6 +26,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * 테스트에서는 스프링이 빈을 관리할 수 있도록 @SpringBootTest 추가
  */
 @SpringBootTest
+@TestPropertySource("classpath:application-test.properties")
 class MemberServiceV3_4Test {
 
     private static final String MEMBER_A = "memberA";

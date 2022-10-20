@@ -1,7 +1,6 @@
 package com.example.jdbc.transaction.service;
 
 import com.example.jdbc.domain.Member;
-import com.example.jdbc.repository.MemberRepositoryV1;
 import com.example.jdbc.repository.MemberRepositoryV2;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,6 +1,5 @@
 package com.example.jdbc.repository;
 
-import com.example.jdbc.connection.ConnectionConst;
 import com.example.jdbc.domain.Member;
 import com.zaxxer.hikari.HikariDataSource;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.test.context.TestPropertySource;
 
 import java.sql.SQLException;
@@ -19,7 +17,7 @@ import static org.assertj.core.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@TestPropertySource("classpath:application-test.properties")
+@TestPropertySource("classpath:application.properties")
 class MemberRepositoryV1Test {
 
     MemberRepositoryV1 repository;

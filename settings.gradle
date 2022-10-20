@@ -1,4 +1,5 @@
 rootProject.name = 'spring-db'
 include 'jdbc'
 include 'db-start'
+include 'spring-transaction'
 

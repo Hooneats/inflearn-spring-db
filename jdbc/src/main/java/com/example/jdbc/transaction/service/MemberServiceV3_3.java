@@ -9,8 +9,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * 트랜젝션 - @Transactional AOP
+ * 트랜젝션 - @Transactional AOP (프록시 사용)
  * @Transactional 은 클래스에 붙이면 모든 public 메서드에 적용됨
+ *
+ * TODO
+ *    [PlatformTransactionManager]
+ *          트랜젝션 매니저 -----(1.커넥션생성 2.autoCommit(false) 해 커넥션 보냄)------> 트랜젝션 동기화 매니저 (커넥션 관리)
+ *              |                                                                           |(커넥션 획득 및 트랜젝션 커넥션 동기화)
+ *          서비스 로직 시작(트랜젝션 시작) -----------------------> 비즈니스 로직 ----------------> 데이터 접근 로직
+ *              [AOP 프록시]                                    [서비스]                        [레포지토리]
  */
 @Slf4j
 public class MemberServiceV3_3 {

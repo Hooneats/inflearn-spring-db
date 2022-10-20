@@ -84,8 +84,8 @@ class ItemRepositoryTest {
         test("", null, item1, item2, item3);
 
         //itemName 검증
-        test("itemA-1", null, item1, item2);
-        test("itemA-2", null, item1, item2);
+        test("itemA-1", null, item1);
+        test("itemA-2", null, item2);
         test("itemB-1", null, item3);
 
         //maxPrice 검증

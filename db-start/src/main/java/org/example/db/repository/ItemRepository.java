@@ -1,6 +1,6 @@
-package hello.itemservice.repository;
+package org.example.db.repository;
 
-import hello.itemservice.domain.Item;
+import org.example.db.domain.Item;
 
 import java.util.List;
 import java.util.Optional;

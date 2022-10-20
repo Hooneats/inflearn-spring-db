@@ -1,8 +1,8 @@
-package hello.itemservice.service;
+package org.example.db.service;
 
-import hello.itemservice.domain.Item;
-import hello.itemservice.repository.ItemSearchCond;
-import hello.itemservice.repository.ItemUpdateDto;
+import org.example.db.repository.ItemSearchCond;
+import org.example.db.repository.ItemUpdateDto;
+import org.example.db.domain.Item;
 
 import java.util.List;
 import java.util.Optional;

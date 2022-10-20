@@ -1,9 +1,9 @@
-package hello.itemservice.web;
+package org.example.db.web;
 
-import hello.itemservice.domain.Item;
-import hello.itemservice.repository.ItemSearchCond;
-import hello.itemservice.repository.ItemUpdateDto;
-import hello.itemservice.service.ItemService;
+import org.example.db.domain.Item;
+import org.example.db.repository.ItemSearchCond;
+import org.example.db.repository.ItemUpdateDto;
+import org.example.db.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

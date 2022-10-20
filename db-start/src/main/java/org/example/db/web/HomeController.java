@@ -1,4 +1,4 @@
-package hello.itemservice.web;
+package org.example.db.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

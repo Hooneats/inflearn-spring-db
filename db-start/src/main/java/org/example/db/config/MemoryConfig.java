@@ -1,9 +1,9 @@
-package hello.itemservice.config;
+package org.example.db.config;
 
-import hello.itemservice.repository.ItemRepository;
-import hello.itemservice.repository.memory.MemoryItemRepository;
-import hello.itemservice.service.ItemService;
-import hello.itemservice.service.ItemServiceV1;
+import org.example.db.repository.ItemRepository;
+import org.example.db.repository.memory.MemoryItemRepository;
+import org.example.db.service.ItemService;
+import org.example.db.service.ItemServiceV1;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

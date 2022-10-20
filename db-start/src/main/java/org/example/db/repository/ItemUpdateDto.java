@@ -1,20 +1,17 @@
-package hello.itemservice.domain;
+package org.example.db.repository;
 
 import lombok.Data;
 
 @Data
-public class Item {
-
-    private Long id;
-
+public class ItemUpdateDto {
     private String itemName;
     private Integer price;
     private Integer quantity;
 
-    public Item() {
+    public ItemUpdateDto() {
     }
 
-    public Item(String itemName, Integer price, Integer quantity) {
+    public ItemUpdateDto(String itemName, Integer price, Integer quantity) {
         this.itemName = itemName;
         this.price = price;
         this.quantity = quantity;

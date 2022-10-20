@@ -1,18 +1,22 @@
-package hello.itemservice.domain;
+package org.example.db.domain;
 
-import hello.itemservice.repository.ItemRepository;
-import hello.itemservice.repository.ItemSearchCond;
-import hello.itemservice.repository.ItemUpdateDto;
-import hello.itemservice.repository.memory.MemoryItemRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.example.db.domain.Item;
+import org.example.db.repository.ItemRepository;
+import org.example.db.repository.ItemSearchCond;
+import org.example.db.repository.ItemUpdateDto;
+import org.example.db.repository.memory.MemoryItemRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import org.springframework.test.annotation.Commit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Slf4j
 @SpringBootTest
 class ItemRepositoryTest {
 
@@ -40,6 +44,10 @@ class ItemRepositoryTest {
         assertThat(findItem).isEqualTo(savedItem);
     }
 
+    /**
+     * @Commit 을 넣으면 테스트에서 롤백안하고 커밋하기에 UpdateSQL 을 볼 수 있다.
+     */
+    @Commit
     @Test
     void updateItem() {
         //given
@@ -65,6 +73,8 @@ class ItemRepositoryTest {
         Item item2 = new Item("itemA-2", 20000, 20);
         Item item3 = new Item("itemB-1", 30000, 30);
 
+        log.info("repository = {}", itemRepository.getClass()); //CGLIB 인 것을 확인 -> 프록
+
         itemRepository.save(item1);
         itemRepository.save(item2);
         itemRepository.save(item3);
@@ -74,19 +84,19 @@ class ItemRepositoryTest {
         test("", null, item1, item2, item3);
 
         //itemName 검증
-        test("itemA", null, item1, item2);
-        test("temA", null, item1, item2);
-        test("itemB", null, item3);
+        test("itemA-1", null, item1, item2);
+        test("itemA-2", null, item1, item2);
+        test("itemB-1", null, item3);
 
         //maxPrice 검증
         test(null, 10000, item1);
 
         //둘 다 있음 검증
-        test("itemA", 10000, item1);
+        test("itemA-1", 10000, item1);
     }
 
     void test(String itemName, Integer maxPrice, Item... items) {
         List<Item> result = itemRepository.findAll(new ItemSearchCond(itemName, maxPrice));
-        assertThat(result).containsExactly(items);
+        assertThat(result).contains(items);
     }
 }

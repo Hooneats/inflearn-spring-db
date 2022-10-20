@@ -1,7 +1,7 @@
-package hello.itemservice;
+package org.example.db;
 
-import hello.itemservice.domain.Item;
-import hello.itemservice.repository.ItemRepository;
+import org.example.db.domain.Item;
+import org.example.db.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

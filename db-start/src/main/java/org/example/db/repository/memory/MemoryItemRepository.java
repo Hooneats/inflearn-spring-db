@@ -1,9 +1,9 @@
-package hello.itemservice.repository.memory;
+package org.example.db.repository.memory;
 
-import hello.itemservice.domain.Item;
-import hello.itemservice.repository.ItemRepository;
-import hello.itemservice.repository.ItemSearchCond;
-import hello.itemservice.repository.ItemUpdateDto;
+import org.example.db.repository.ItemUpdateDto;
+import org.example.db.domain.Item;
+import org.example.db.repository.ItemRepository;
+import org.example.db.repository.ItemSearchCond;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 

@@ -1,4 +1,4 @@
-package hello.itemservice.repository;
+package org.example.db.repository;
 
 import lombok.Data;
 

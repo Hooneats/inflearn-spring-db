@@ -57,6 +57,7 @@ public class JpaItemRepository implements ItemRepository {
         return Optional.ofNullable(item);
      }
 
+    // 동적쿼리 해야하지만 예제기에 그냥 findAll
     @Override
     public List<Item> findAll(ItemSearchCond cond) {
         String jpql = "select i from item i";

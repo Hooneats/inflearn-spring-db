@@ -6,6 +6,9 @@ group 'hello.itemservice'
 version 'unspecified'
 sourceCompatibility = '11'
 
+// like 에러 있어서 버전 변경
+ext["hibernate.version"] = "5.6.5.Final"
+
 repositories {
     mavenCentral()
 }

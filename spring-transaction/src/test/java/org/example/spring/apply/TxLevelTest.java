@@ -20,6 +20,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  *      3. 인터페이스의 메서드
  *      4. 인터페이스의 타입(우선순위가 가장 낮다)
  *      그러나 인터페이스에 트랜젝션적용은 스프링에서 권장하지않는다(적용안되는 경우가 있기에)
+ *   ---> 또한 Transaction 을 적용하려면 반드시 스프링이 만든 프록시 객체로 실행해야한다.
  */
 @Slf4j
 @SpringBootTest

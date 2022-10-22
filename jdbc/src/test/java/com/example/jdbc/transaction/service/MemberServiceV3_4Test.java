@@ -24,6 +24,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 /**
  * 트랜젝션 - DataSource , TransactionManager 자동 등록
  * 테스트에서는 스프링이 빈을 관리할 수 있도록 @SpringBootTest 추가
+ *
+ * TODO 참고로 @DataJpaTest 는 Spring 의 프록시 기능을 사용 못해 @Transactional 를 사용하지 못한다.
  */
 @SpringBootTest
 @TestPropertySource("classpath:application-test.properties")

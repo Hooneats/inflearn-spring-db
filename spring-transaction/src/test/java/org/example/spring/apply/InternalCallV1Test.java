@@ -14,6 +14,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  * TODO :
  *  프록시 객체의 internal 메서드 문제
  *   - 인터널 메서드에는 트랜젝션이 안된다. -> 클래스로 분리해 프록시 체 진입 메서드가 트랜젝션있는 메서드이도록 해결가능
+ *              ㄴ(인터널 메서드는 this 가 생략되어있기에 이 this 는 스프링의 프록시를 가리키지 않는다.)
  *   - public 메서드만 트랜젝션이 적용된다.
  *       ㄴ-- 트랜젝션은 비즈니스의 시작점에 거는 경우가 많다 그렇기에 public 에만 걸리도록 스프링에서 구현했다.
  *   - 스프링이 초기화하는 시점에는 AOP 가 적용되지 않을 수 있다.

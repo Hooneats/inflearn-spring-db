@@ -14,7 +14,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
  *
  * 추가적으로 인터페이스에도 @Transactional 을 적용할 수 있다.
  *  TODO
- *   우선순위 :
+ *   @Transactional 적용 우선순위 :
  *      1. 클래스의 메서드(우선순위가 가장 놓다)
  *      2. 클래스의 타입
  *      3. 인터페이스의 메서드

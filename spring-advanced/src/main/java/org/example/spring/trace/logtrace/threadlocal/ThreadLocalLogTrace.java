@@ -75,7 +75,7 @@ public class ThreadLocalLogTrace implements LogTrace {
         TraceId traceId = traceIdHolder.get();
         if (traceId.isFirstLevel()) {
             /**
-             * 현 쓰레드가 보관한 쓰레드 로컬의 값을 삭제
+             * 현 쓰레드가 사용한 쓰레드 로컬의 값을 삭제
              * TODO 꼭 해줘야하는 작업!
              */
             traceIdHolder.remove(); // destroy

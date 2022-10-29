@@ -16,8 +16,13 @@ import org.junit.jupiter.api.Test;
  *   ㄴ 런타임시에 프록시객체를 만들어 준다.
  *   ㄴ JDK 동적 프록시는 인터페이스를 기반으로 프록시를 동적으로 만들기에 인터페이스는 필수이다.
  *   ㄴ InvocationHandler 를 구현해야한다.
- *              ㄴ 그렇다면 인터페이스가 없는 경우에는? CGLIB 라는 라이브러리를 사용할 수 있다.
+ *              ㄴ 그렇다면 인터페이스가 없는 경우에는? CGLIB 라는 라이브러리를 사용할 수 있다.(오픈소스로 스프링도 사용하고 있다. MethodInterceptor 제공)
  *  // 자바는 클래스들이 호출되면 클래스들이 클래스로더에 올라간다 때문에 클래스로더를 지정해주는것이다.
+ *
+ *  TODO :
+ *   ====> 그렇다면 인터페이스가 있으면 JDK 에 InvocationHandler 를 쓰고
+ *   구체 클래스만 있으면 CGLIB 에 MethodInterceptor 를 사용하면될까? 그런데 너무 따로따로 써야하네?
+ *              ㄴ 스프링이 제공하는 프록시 팩터리로 해결가능
  */
 @Slf4j
 public class JdkDynamicProxyTest {

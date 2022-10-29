@@ -2,8 +2,13 @@ package org.example.proxy;
 
 import org.example.proxy.config.AppV1Config;
 import org.example.proxy.config.AppV2Config;
+import org.example.proxy.config.v1_proxy.ConcreteProxyConfig;
+import org.example.proxy.config.v1_proxy.InterfaceProxyConfig;
+import org.example.proxy.trace.logtrace.LogTrace;
+import org.example.proxy.trace.logtrace.ThreadLocalLogTrace;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -26,12 +31,19 @@ import org.springframework.context.annotation.Import;
  *  						  Proxy ------------------ Server
  */
  //@Import(AppV1Config.class)
-@Import({AppV1Config.class, AppV2Config.class})
+//@Import({AppV1Config.class, AppV2Config.class})
+//@Import(InterfaceProxyConfig.class)
+@Import(ConcreteProxyConfig.class)
 @SpringBootApplication(scanBasePackages = "org.example.proxy.app") //주의 :  왜 app 을 지정했냐면 @Import 를 써서 수동등록을 보여주기위해
 public class ProxyApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProxyApplication.class, args);
+	}
+
+	@Bean
+	public LogTrace logTrace() {
+		return new ThreadLocalLogTrace();
 	}
 
 }

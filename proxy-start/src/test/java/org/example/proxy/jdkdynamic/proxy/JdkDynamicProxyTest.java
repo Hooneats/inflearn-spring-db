@@ -22,7 +22,12 @@ import org.junit.jupiter.api.Test;
  *  TODO :
  *   ====> 그렇다면 인터페이스가 있으면 JDK 에 InvocationHandler 를 쓰고
  *   구체 클래스만 있으면 CGLIB 에 MethodInterceptor 를 사용하면될까? 그런데 너무 따로따로 써야하네?
- *              ㄴ 스프링이 제공하는 프록시 팩터리로 해결가능
+ *              ㄴ 스프링이 제공하는 프록시 팩터리로 해결가능 (ProxyFactory)
+ *                ㄴ ProxyFactory 를 사용할때 MethodInterceptor 또는 InvocationHandler 를 Advice 라는 새로운 개념으로 치환하였다.
+ *                   ProxyFactory 는 Advice 를 호출하는 용도로 전용 adviceInvocationHandler 나 adviceMethodInterceptor 를 내부에서 사용한다.
+ *                   즉, 결과적으로 개발자는 Advice 만 만들면 된다.
+ *              ㄴ 또한 앞서(특정 조건 맞을 때 프록시적용) 특정 메서드 이름의 조건에 맞을 때만 프록시 부가 기능이 적용되는 코드를 직접 만들었는데,
+ *                  스프링은 이를 Pointcut 이라는 개념을 도입해서 일관성 있게 해결하였다.
  */
 @Slf4j
 public class JdkDynamicProxyTest {

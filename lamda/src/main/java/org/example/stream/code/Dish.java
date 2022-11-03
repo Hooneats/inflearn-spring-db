@@ -25,7 +25,14 @@ public class Dish {
         new Dish("prawns", 300),
         new Dish("rice", 350),
         new Dish("chicken", 400),
-        new Dish("fries", 530)
+        new Dish("fries", 530),
+        new Dish("cookie", 120),
+        new Dish("chocolate", 350),
+        new Dish("salt", 20),
+        new Dish("ggule", 80),
+        new Dish("ssal", 350),
+        new Dish("tang", 530),
+        new Dish("noodle", 400)
     );
 
 }

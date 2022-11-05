@@ -5,4 +5,5 @@ include 'spring-transaction'
 include 'spring-advanced'
 include 'proxy-start'
 include 'lambda'
+include 'kotlin'
 

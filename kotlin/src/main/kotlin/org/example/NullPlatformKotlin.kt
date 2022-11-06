@@ -49,8 +49,7 @@ fun startsWithA3(str: String?): Boolean {
 
     // 다음과 같은 early return 도 가능
     str ?: return false
-
-    return str?.startsWith("A") ?: false
+    return str.startsWith("A")
 }
 
 // TODO : 무조건 null 이 아닌경우

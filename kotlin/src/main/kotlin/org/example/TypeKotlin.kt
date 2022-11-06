@@ -28,7 +28,7 @@ fun printAgeIfPerson(obj: Any) {
     // !is 도 사용 가능한데 이는 Person 타입이 아니다 이다.
     if (obj is Person) {
         // TODO : 코틀린에서 참조 타입 변환은 as 를 사용한다.
-        val person = obj as Person
+        val person = obj as Person // 자바의 (Person) obj 와 같다
         println(person.name)
         // TODO : 코틀린에서 as Person 변환은 생랼될 수 있다. -> 스마트캐스트
         println(obj.name)
@@ -49,7 +49,7 @@ fun printAgeIfPersonNullable(obj: Any?) {
         넣으면 된다.
         
         문자열의 특정 문자는 배열처럼 [] 를 사용한다.
-        ㄴ> "문자열입니다" 의 두번째 ${str[2]}
+        ㄴ> "문자열입니다" 의 두번째 [2] 사용 : ${str[2]} / get(2) 이렇게도 가능 :  ${str.get(2)}
          ㄴ> nullable 인 문자는 get 을 사용 ${person?.name?.get(2)}
     """.trimIndent())
 }

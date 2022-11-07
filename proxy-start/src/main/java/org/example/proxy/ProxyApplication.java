@@ -6,6 +6,11 @@ import org.example.proxy.config.v1_proxy.ConcreteProxyConfig;
 import org.example.proxy.config.v1_proxy.InterfaceProxyConfig;
 import org.example.proxy.config.v2_dynamicproxy.DynamicProxyBasicConfig;
 import org.example.proxy.config.v2_dynamicproxy.DynamicProxyFilterConfig;
+import org.example.proxy.config.v3_proxyfactory.ProxyFactoryConfigV1;
+import org.example.proxy.config.v3_proxyfactory.ProxyFactoryConfigV2;
+import org.example.proxy.config.v4_bean_postprocessor.BeanPostProcessorConfig;
+import org.example.proxy.config.v5_autoproxy.AutoProxyConfig;
+import org.example.proxy.config.v6_aop.AopConfig;
 import org.example.proxy.trace.logtrace.LogTrace;
 import org.example.proxy.trace.logtrace.ThreadLocalLogTrace;
 import org.springframework.boot.SpringApplication;
@@ -37,7 +42,12 @@ import org.springframework.context.annotation.Import;
 //@Import(InterfaceProxyConfig.class)
 //@Import(ConcreteProxyConfig.class)
 //@Import(DynamicProxyBasicConfig.class)
-@Import(DynamicProxyFilterConfig.class)
+//@Import(DynamicProxyFilterConfig.class)
+//@Import(ProxyFactoryConfigV1.class)
+//@Import(ProxyFactoryConfigV2.class)
+//@Import(BeanPostProcessorConfig.class)
+//@Import(AutoProxyConfig.class)
+@Import(AopConfig.class)
 @SpringBootApplication(scanBasePackages = "org.example.proxy.app") //주의 :  왜 app 을 지정했냐면 @Import 를 써서 수동등록을 보여주기위해
 public class ProxyApplication {
 

@@ -12,6 +12,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    // 스프링 부트 테스트
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     // 스프링 AOP
     implementation 'org.springframework.boot:spring-boot-starter-aop'

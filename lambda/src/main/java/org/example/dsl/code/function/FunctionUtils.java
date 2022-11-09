@@ -18,7 +18,11 @@ public final class FunctionUtils {
         return targets.stream();
     }
 
-    public static <T, R> R of(T resource , Function<T, R> function) {
+    public static <T> LambdaBuilder<T> start(T value) {
+        return LambdaBuilder.start(value);
+    }
+
+    public static <T, R> R of(T resource, Function<T, R> function) {
         return function.apply(resource);
     }
 

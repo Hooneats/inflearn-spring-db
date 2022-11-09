@@ -6,6 +6,7 @@ import org.example.dsl.code.Tax;
 import org.example.dsl.code.TaxCalculator;
 import org.example.dsl.code.Trade;
 import org.example.dsl.code.Trade.Type;
+import org.example.dsl.code.function.FunctionUtils;
 
 public class Original {
 
@@ -47,6 +48,12 @@ public class Original {
                 .with(Tax::regional)
                 .with(Tax::surcharge)
                 .calculator(order);
+
+        Object end = FunctionUtils.start(advancedValue)
+            .consume(System.out::println)
+            .of(() -> 9)
+            .end();
+        System.out.println("end = " + end);
     }
 
 }

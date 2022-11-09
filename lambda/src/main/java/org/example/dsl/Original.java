@@ -7,6 +7,9 @@ import org.example.dsl.code.TaxCalculator;
 import org.example.dsl.code.Trade;
 import org.example.dsl.code.Trade.Type;
 import org.example.dsl.code.function.FunctionUtils;
+import org.example.dsl.code.function.LambdaBuilder;
+
+import java.util.Optional;
 
 public class Original {
 
@@ -49,11 +52,12 @@ public class Original {
                 .with(Tax::surcharge)
                 .calculator(order);
 
-        Object end = FunctionUtils.start(advancedValue)
-            .consume(System.out::println)
-            .of(() -> 9)
-            .end();
-        System.out.println("end = " + end);
+        Optional<?> end = FunctionUtils.start(advancedValue)
+                .consume(System.out::println)
+                .of(() -> 9)
+                .check(o -> (int) o == 2)
+                .end();
+        System.out.println("end.get() = " + end.get());
     }
 
 }

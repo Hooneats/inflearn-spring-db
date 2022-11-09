@@ -1,51 +1,50 @@
 package org.example.dsl.code.function;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-public class LambdaBuilder<T> {
+public class LambdaBuilder {
 
-    private T value;
-    private Boolean stop;
+    private Optional<?> value;
 
-    private LambdaBuilder(T value) {
-        this.value = value;
-        this.stop = false;
+    private <T> LambdaBuilder(T value) {
+        this.value = Optional.ofNullable(value);
     }
 
-    public static <T> LambdaBuilder<T> start(T value) {
-        return new LambdaBuilder<>(value);
+    public static <T> LambdaBuilder start(T value) {
+        return new LambdaBuilder(value);
     }
 
-    public LambdaBuilder<?> of(Function<T, ?> function) {
-        if (this.stop) return this;
-        return new LambdaBuilder<>(function.apply(this.value));
+    public <T> LambdaBuilder of(Function<Object, ?> function) {
+        if (this.value.isEmpty()) return this;
+        return new LambdaBuilder(function.apply(this.value.get()));
     }
 
-    public LambdaBuilder<?> of(Supplier<?> supplier) {
-        if (this.stop) return this;
-        return new LambdaBuilder<>(supplier.get());
+    public LambdaBuilder of(Supplier<?> supplier) {
+        if (this.value.isEmpty()) return this;
+        return new LambdaBuilder(supplier.get());
     }
 
-    public LambdaBuilder<T> consume(Consumer<T> consumer) {
-        if (this.stop) return this;
-        consumer.accept(this.value);
+    public <T> LambdaBuilder consume(Consumer<Object> consumer) {
+        if (this.value.isEmpty()) return this;
+        consumer.accept(this.value.get());
         return this;
     }
 
-    public LambdaBuilder<T> check(Predicate<T> predicate) {
-        boolean nonStop = predicate.test(this.value);
-        if (nonStop) {
-            this.stop = false;
-        } else {
-            this.stop = true;
+    public <T> LambdaBuilder check(Predicate<Object> predicate) {
+        if (this.value.isEmpty()) return this;
+        boolean stop = !predicate.test(this.value.get());
+        if (stop) {
+            this.value = Optional.empty();
         }
         return this;
     }
 
-    public T end() {
+    public Optional<?> end() {
+        if (this.value.isEmpty()) return Optional.empty();
         return this.value;
     }
 

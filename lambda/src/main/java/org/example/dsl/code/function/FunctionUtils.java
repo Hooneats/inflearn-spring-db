@@ -18,7 +18,7 @@ public final class FunctionUtils {
         return targets.stream();
     }
 
-    public static <T> LambdaBuilder<T> start(T value) {
+    public static <T> LambdaBuilder start(T value) {
         return LambdaBuilder.start(value);
     }
 

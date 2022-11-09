@@ -1,12 +1,15 @@
 package org.example.aop.pointcut;
 
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.example.aop.member.MemberService;
+import org.example.aop.member.annotation.ClassAop;
+import org.example.aop.member.annotation.MethodAop;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -50,6 +53,31 @@ public class ParameterTest {
         @Before("allMember() && args(arg,..)")
         public void logArgs3(String arg) throws Throwable {
             log.info("[logArgs3] , arg3={}", arg);
+        }
+
+        @Before("allMember() && this(obj)") // 프록시 객체 전달 받는다. 때문에 JDK 인경우 인터페이스(프록시가 만약 impl 이면 받지 못함)를  CGLIB 인경우 구체클래스(부모는 가능하기에 CGLIB 는 interface 를 안다)를
+        public void thisArgs(JoinPoint joinPoint, MemberService obj) {
+            log.info("[this] {} , obj = {}", joinPoint.getSignature(), obj.getClass());
+        }
+
+        @Before("allMember() && target(obj)") // 실제 대상 (인스턴스) 전달 받는다.
+        public void targetArgs(JoinPoint joinPoint, MemberService obj) {
+            log.info("[target] {} , obj = {}", joinPoint.getSignature(), obj.getClass());
+        }
+
+        @Before("allMember() && @target(annotation)") // 에노테이션 전달 받는다.
+        public void atTarget(JoinPoint joinPoint, ClassAop annotation) {
+            log.info("[@target] {} , obj = {}", joinPoint.getSignature(), annotation.getClass());
+        }
+
+        @Before("allMember() && @within(annotation)") // 에노테이션 전달 받는다.
+        public void atWithin(JoinPoint joinPoint, ClassAop annotation) {
+            log.info("[@within] {} , obj = {}", joinPoint.getSignature(), annotation.getClass());
+        }
+
+        @Before("allMember() && @annotation(annotation)") // 에노테이션 value
+        public void atannotation(JoinPoint joinPoint, MethodAop annotation) {
+            log.info("[@annotation] {} , annotationValue = {}", joinPoint.getSignature(), annotation.value());
         }
     }
 

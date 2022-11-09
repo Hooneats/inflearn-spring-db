@@ -52,6 +52,7 @@ public class ArgsTest {
                 .matches(helloMethod, MemberServiceImpl.class)).isTrue();
     }
     /**
+     * 파라미터 매칭 :
      * execution(* *(java.io.Serializable)): 메서드의 시그니처로 판단 (정적) --> 때문에 부모타입도 안되고 정확한 타입만가능
      * args(java.io.Serializable): 런타임에 전달된 인수로 판단 (동적)
      */

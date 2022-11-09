@@ -6,11 +6,11 @@ import java.util.stream.Stream;
 
 public final class LambdaUtils<T> {
 
-    public static <V> Optional<V> toOptional(V target) {
+    public static <T> Optional<T> toOptional(T target) {
         return Optional.ofNullable(target);
     }
 
-    public static <V> Stream<V> toStream(Collection<V> targets) {
+    public static <T> Stream<T> toStream(Collection<T> targets) {
         return targets.stream();
     }
 }

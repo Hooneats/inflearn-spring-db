@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-public final class FunctionUtils {
+public final class LambdaUtils {
 
     public static <T> Optional<T> optional(T target) {
         return Optional.ofNullable(target);
@@ -18,23 +18,19 @@ public final class FunctionUtils {
         return targets.stream();
     }
 
-    public static <T> LambdaBuilder start(T value) {
-        return LambdaBuilder.start(value);
-    }
-
-    public static <T, R> R of(T resource, Function<T, R> function) {
+    public static <T, R> R function(T resource, Function<T, R> function) {
         return function.apply(resource);
     }
 
-    public static <R> R of(Supplier<R> supplier) {
+    public static <R> R supplier(Supplier<R> supplier) {
         return supplier.get();
     }
 
-    public static <T> Boolean check(T value, Predicate<T> predicate) {
+    public static <T> Boolean predicate(T value, Predicate<T> predicate) {
         return predicate.test(value);
     }
 
-    public static <T> void consume(T resource, Consumer<T> consumer) {
+    public static <T> void consumer(T resource, Consumer<T> consumer) {
         consumer.accept(resource);
     }
 }

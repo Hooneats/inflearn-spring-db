@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 /**
- * 데이터의 영속을 유지 할 것 이면 map 메서드를 사용해 새로운 객체를 항상 반환하도록 만들고,
+ * 데이터의 영속을 유지 할 것 이면 map 메서드를 사용해 함수에서 새로운 객체를 항상 반환하도록 만들고,
  * 그게 아니라면 consume 메서드를 이용할 수 있다.
  * 이러한 속성은 stream 의 map 과 foreach 와 마찬가지 이다.
  */

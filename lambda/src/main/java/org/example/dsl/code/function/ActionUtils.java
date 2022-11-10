@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-public final class LambdaUtils {
+public final class ActionUtils {
 
     public static <T> Optional<T> optional(T target) {
         return Optional.ofNullable(target);

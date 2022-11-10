@@ -27,6 +27,8 @@ public class AopTest {
     OrderRepository orderRepository;
 
     // TODO : 스프링은 AOP 기술 + 자동 프록시 생성기를 통해 프록시를 만든다.
+    //  target 인스턴스는 빈으로 등록되지는 않지만 의존관계 주입은 받을 수 있습니다.
+    //  빈으로 등록되는것은 프록시이다.
     @Test
     void aopInfo() {
         log.info("isAopProxy , orderService = {}", AopUtils.isAopProxy(orderService));

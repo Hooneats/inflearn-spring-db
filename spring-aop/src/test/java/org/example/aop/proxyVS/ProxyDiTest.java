@@ -10,12 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
 // TODO 프록시 생성방법에 따라 DI 문제
-
-
 @Slf4j
 @Import(ProxyDIAspect.class)
 //@SpringBootTest(properties = {"spring.aop.proxy-target-class=false"}) //JDK 동적 프록시 MemberServiceImpl 을 DI 받을 수 없다.
-@SpringBootTest(properties = {"spring.aop.proxy-target-class=true"}) //CGLIB 프록시
+//@SpringBootTest(properties = {"spring.aop.proxy-target-class=true"}) //CGLIB 프록시
+@SpringBootTest // 기본이 CGLIB 프록시
 public class ProxyDiTest {
     /**
      * TODO
@@ -30,6 +29,7 @@ public class ProxyDiTest {
      *      ㄴ 스프링 4.0 부터는 'objenesis' 라는 라이브러리를 새용해 기본 생성자 없이 객체 생성이 가능하다.
      *                          ㄴ (CGLIB 기본 생성자 필수) 와 (생성자 두번 호출) 문제 해결
      *   ====> 따라서 스프링 부트 2.0 부터는 스프링은 CGLIB 프록시 방식을 기본으로 채택
+     *              ㄴ 기본 설정 -> spring.aop.proxy-target-class=true
      */
 
     @Autowired

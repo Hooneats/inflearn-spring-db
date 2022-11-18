@@ -37,8 +37,9 @@ test {
     useJUnitPlatform()
 }
 
+// 빌드 툴을 gradle 로 빌드할시에는 clean -> compileJava gradle 콘솔 사용법법은 : ./gradlew 빌드시에 ./gradlew clean compileJava
 //Querydsl 추가, 자동 생성된 Q클래스 gradle clean으로 제거
 // 빌드시 자동으로 Q파일 생성되도록 변경됨
 clean {
-    delete file('src/main/generated')
+    delete file('src/main/generated') //빌드 툴을 인텔리제이방식으로 할시 main/generated 밑에 생기기에
 }

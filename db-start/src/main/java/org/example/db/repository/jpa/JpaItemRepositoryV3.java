@@ -1,14 +1,8 @@
 package org.example.db.repository.jpa;
 
-import static org.example.db.domain.QItem.item;
-
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import java.util.List;
-import java.util.Optional;
-import javax.persistence.EntityManager;
 import lombok.extern.slf4j.Slf4j;
 import org.example.db.domain.Item;
 import org.example.db.repository.ItemRepository;
@@ -17,6 +11,12 @@ import org.example.db.repository.ItemUpdateDto;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
+import javax.persistence.EntityManager;
+import java.util.List;
+import java.util.Optional;
+
+import static org.example.db.domain.QItem.item;
 
 @Slf4j
 @Repository
@@ -97,6 +97,7 @@ public class JpaItemRepositoryV3 implements ItemRepository {
 
     }
 
+    // Like 문
     private BooleanExpression likeItemName(String itemName) {
         return StringUtils.hasText(itemName) ? item.itemName.like("%" + itemName + "%") : null;
     }

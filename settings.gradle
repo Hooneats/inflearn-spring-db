@@ -8,4 +8,5 @@ include 'lambda'
 include 'kotlin'
 include 'spring-aop'
 include 'spring-data-jpa'
+include 'effective-java'
 

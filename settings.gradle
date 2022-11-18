@@ -7,4 +7,5 @@ include 'proxy-start'
 include 'lambda'
 include 'kotlin'
 include 'spring-aop'
+include 'spring-data-jpa'
 

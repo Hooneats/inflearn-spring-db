@@ -103,7 +103,7 @@ class MemberServiceTest {
      * logRepository : @Transactional - ON Exception -> 정상 흐름 복구 안시키는 경우
      */
     @Test
-    void outerTxOn_fail() {
+    void recoverException_fail() {
         // given
         String username = "로그예외_outerTxOn_fail";
 
@@ -125,7 +125,7 @@ class MemberServiceTest {
      *  때문에 propagation 설정이 필요하다.
      */
     @Test
-    void recoverException_fail() {
+    void recoverException_catch_fail() {
         // given
         String username = "로그예외_recoverException_fail";
 
@@ -147,7 +147,7 @@ class MemberServiceTest {
      *  때문에 logRepository 에 propagation 설정이 필요하다. (주의할점은 실시간 유저가 많은 서비스일경우 커넥션 갯수가 부족해질 수도 있다.)
      */
     @Test
-    void recoverException_success() {
+    void recoverException_requiresNew_success() {
         // given
         String username = "로그예외_recoverException_success";
 

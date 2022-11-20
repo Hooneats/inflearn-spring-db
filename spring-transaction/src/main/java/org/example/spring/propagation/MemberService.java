@@ -76,6 +76,26 @@ public class MemberService {
         try {
             logRepository.save_Tx(logMessage);
         } catch (RuntimeException e) {
+            log.info("log 저장에 실패했습니다. logMessage = {}", logMessage);
+            log.info("에러를 catch 로 잡았어도 REQUIRED (참여) 옵션이기에, setRollbackOnly = true 로 만듭니다.");
+        }
+        log.info("===> logRepository 트랜젝션 호출 종료");
+    }
+
+    @Transactional
+    // TODO 로그 예외 발생
+    public void joinV2_Log_Requires_New(String username) {
+        Member member = new Member(username);
+        Log logMessage = new Log((username));
+
+        log.info("===> memberRepository 트랜젝션 호출 시작");
+        memberRepository.save_Tx(member);
+        log.info("===> memberRepository 트랜젝션 호출 종료");
+
+        log.info("===> logRepository 트랜젝션 호출 시작");
+        try {
+            logRepository.save_Tx_Requires_New(logMessage);
+        } catch (RuntimeException e) {
             // logRepository 에서 propagation = REQUIRES_NEW 로 신규 생성되도록 만들었어도,(트랜젝션을 새로만든거지 예외를 잡은게 아니기에)
             // logRepository 에서 발생시킨 에러는 트랜젝션과는 별개이기에 여기서 에러를 잡아 처리해야한다.
             log.info("log 저장에 실패했습니다. logMessage = {}", logMessage);

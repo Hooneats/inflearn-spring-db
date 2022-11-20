@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.UnexpectedRollbackException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @Slf4j
 @SpringBootTest
 class MemberServiceTest {
@@ -132,10 +130,11 @@ class MemberServiceTest {
         String username = "로그예외_recoverException_fail";
 
         // when
-        memberService.joinV2(username);
+        org.assertj.core.api.Assertions.assertThatThrownBy(() -> memberService.joinV2(username))
+                .isInstanceOf(UnexpectedRollbackException.class);
 
         //then : log 데이터만 롤백된다.
-        Assertions.assertTrue(memberRepository.find(username).isPresent()); // 테스트 통과 실패
+        Assertions.assertTrue(memberRepository.find(username).isEmpty()); // 테스트 통과 실패
         Assertions.assertTrue(logRepository.find(username).isEmpty());
     }
 
@@ -153,7 +152,7 @@ class MemberServiceTest {
         String username = "로그예외_recoverException_success";
 
         // when
-        memberService.joinV2(username);
+        memberService.joinV2_Log_Requires_New(username);
 
         //then : log 데이터만 롤백된다.
         Assertions.assertTrue(memberRepository.find(username).isPresent()); // 테스트 통과 성공

@@ -146,7 +146,7 @@ public class BasicTxTest {
         TransactionStatus inner = txManager.getTransaction(new DefaultTransactionAttribute());
         log.info("inner.isNewTransaction() = {}", inner.isNewTransaction()); // false
         log.info("내부 트랜젝션 롤백 시작");
-        txManager.rollback(inner);
+        txManager.rollback(inner); // rollback-only 표시를 하게됨
         log.info("내부 트랜젝션 롤백 완료");
 
         log.info("외부 트랜젝션 커밋 시작");

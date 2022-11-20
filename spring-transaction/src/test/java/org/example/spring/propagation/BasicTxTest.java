@@ -36,7 +36,7 @@ public class BasicTxTest {
     @Test
     void commit() {
         log.info("트랜젝션 시작");
-        TransactionStatus status = txManager.getTransaction(new DefaultTransactionAttribute());
+        TransactionStatus status = txManager.getTransaction(new DefaultTransactionAttribute()); // Attribute 가 좀 더 기능이 많다.
 
         log.info("트랜젝션 커밋 시작");
         txManager.commit(status);

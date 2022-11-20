@@ -20,6 +20,11 @@ class MemberServiceTest {
     @Autowired
     LogRepository logRepository;
 
+    /**
+     *  Service      --->    Repository
+     * memberService      1) memberRepository
+     *                    2) logRepository
+     */
 
     /**
      * memberService : @Transactional - Off
@@ -32,7 +37,7 @@ class MemberServiceTest {
         String username = "outerTxOff_success";
 
         // when
-        memberService.joinV1(username);
+        memberService.joinV1_NON_Tx(username);
 
         //then : 모든 데이터가 정상 저장된다.
         Assertions.assertTrue(memberRepository.find(username).isPresent());
@@ -50,7 +55,7 @@ class MemberServiceTest {
         String username = "로그예외_outerTxOff_fail";
 
         // when
-        org.assertj.core.api.Assertions.assertThatThrownBy(() -> memberService.joinV1(username))
+        org.assertj.core.api.Assertions.assertThatThrownBy(() -> memberService.joinV1_NON_Tx(username))
                 .isInstanceOf(RuntimeException.class);
 
         //then : log 데이터는 롤백된다.
@@ -69,7 +74,7 @@ class MemberServiceTest {
         String username = "singleTx";
 
         // when
-        memberService.joinV1(username);
+        memberService.joinV1_Single_Tx(username);
 
         //then : 모든 데이터가 정상 저장된다.
         Assertions.assertTrue(memberRepository.find(username).isPresent());
@@ -87,7 +92,7 @@ class MemberServiceTest {
         String username = "outerTxOn_success";
 
         // when
-        memberService.joinV1(username);
+        memberService.joinV1_Tx(username);
 
         //then : 모든 데이터가 정상 저장된다.
         Assertions.assertTrue(memberRepository.find(username).isPresent());
@@ -105,7 +110,7 @@ class MemberServiceTest {
         String username = "로그예외_outerTxOn_fail";
 
         // when
-        org.assertj.core.api.Assertions.assertThatThrownBy(() -> memberService.joinV1(username))
+        org.assertj.core.api.Assertions.assertThatThrownBy(() -> memberService.joinV1_Tx(username))
                 .isInstanceOf(RuntimeException.class);
 
         //then : 모든 데이터는 롤백된다.
@@ -127,8 +132,7 @@ class MemberServiceTest {
         String username = "로그예외_recoverException_fail";
 
         // when
-        org.assertj.core.api.Assertions.assertThatThrownBy(() -> memberService.joinV2(username))
-                .isInstanceOf(UnexpectedRollbackException.class);
+        memberService.joinV2(username);
 
         //then : log 데이터만 롤백된다.
         Assertions.assertTrue(memberRepository.find(username).isPresent()); // 테스트 통과 실패

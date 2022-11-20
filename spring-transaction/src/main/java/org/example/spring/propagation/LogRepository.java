@@ -18,7 +18,17 @@ public class LogRepository {
     private final EntityManager em;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void save(Log logMessage) {
+    public void save_Tx(Log logMessage) {
+        log.info("log 저장");
+        em.persist(logMessage);
+
+        if (logMessage.getMessage().contains("로그예외")) {
+            log.info("log 저장시 예외 발생");
+            throw new RuntimeException("로그 예외 발생");
+        }
+    }
+
+    public void save_NON_Tx(Log logMessage) {
         log.info("log 저장");
         em.persist(logMessage);
 

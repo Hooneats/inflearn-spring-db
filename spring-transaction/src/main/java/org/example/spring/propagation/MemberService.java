@@ -20,16 +20,45 @@ public class MemberService {
 
     @Transactional
     // TODO 정상 흐름 -> log , member 각각 트랜젝션 실행
-    public void joinV1(String username) {
+    public void joinV1_Tx(String username) {
         Member member = new Member(username);
         Log logMessage = new Log((username));
 
         log.info("===> memberRepository 트랜젝션 호출 시작");
-        memberRepository.save(member);
+        memberRepository.save_Tx(member);
         log.info("===> memberRepository 트랜젝션 호출 종료");
 
         log.info("===> logRepository 트랜젝션 호출 시작");
-        logRepository.save(logMessage);
+        logRepository.save_Tx(logMessage);
+        log.info("===> logRepository 트랜젝션 호출 종료");
+    }
+
+    // TODO 정상 흐름 -> log , member 각각 트랜젝션 실행
+    public void joinV1_NON_Tx(String username) {
+        Member member = new Member(username);
+        Log logMessage = new Log((username));
+
+        log.info("===> memberRepository 트랜젝션 호출 시작");
+        memberRepository.save_Tx(member);
+        log.info("===> memberRepository 트랜젝션 호출 종료");
+
+        log.info("===> logRepository 트랜젝션 호출 시작");
+        logRepository.save_Tx(logMessage);
+        log.info("===> logRepository 트랜젝션 호출 종료");
+    }
+
+    @Transactional
+    // TODO 정상 흐름 -> log , member 각각 트랜젝션 실행
+    public void joinV1_Single_Tx(String username) {
+        Member member = new Member(username);
+        Log logMessage = new Log((username));
+
+        log.info("===> memberRepository 트랜젝션 호출 시작");
+        memberRepository.save_NON_Tx(member);
+        log.info("===> memberRepository 트랜젝션 호출 종료");
+
+        log.info("===> logRepository 트랜젝션 호출 시작");
+        logRepository.save_NON_Tx(logMessage);
         log.info("===> logRepository 트랜젝션 호출 종료");
     }
 
@@ -40,12 +69,12 @@ public class MemberService {
         Log logMessage = new Log((username));
 
         log.info("===> memberRepository 트랜젝션 호출 시작");
-        memberRepository.save(member);
+        memberRepository.save_Tx(member);
         log.info("===> memberRepository 트랜젝션 호출 종료");
 
         log.info("===> logRepository 트랜젝션 호출 시작");
         try {
-            logRepository.save(logMessage);
+            logRepository.save_Tx(logMessage);
         } catch (RuntimeException e) {
             // logRepository 에서 propagation = REQUIRES_NEW 로 신규 생성되도록 만들었어도,(트랜젝션을 새로만든거지 예외를 잡은게 아니기에)
             // logRepository 에서 발생시킨 에러는 트랜젝션과는 별개이기에 여기서 에러를 잡아 처리해야한다.
